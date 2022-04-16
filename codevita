@@ -1,0 +1,47 @@
+import math
+
+def main():
+    l = [[0 for i in range(65)] for j in range(20)]
+
+    l[1][0] = 'a'
+    l[2][0] = 'a'
+    l[2][1] = 'b'
+
+    n = int(input())
+
+    row = Codevita.between(n)
+
+    for i in range(3, row + 1):
+        l[i] = list(Codevita.change(l[i-1]))
+
+    
+
+    print(l[row][n - (2 ** row)], end = '')
+
+
+class Codevita:
+
+    @staticmethod
+  
+    def change(str1):
+        k = []
+        for i in str1:
+            if i == 'a' or i == 'd':
+                k.append('a')
+                k.append('b')
+            elif i == 'c' or i == 'b':
+                k.append('c')
+                k.append('d')
+        return list(k)
+
+    @staticmethod
+    def between(n):
+        i = 0
+        while i < ((n // (2))+1):
+            if n < 2 ** i:
+                return i
+            i += 1
+        return 0
+
+if __name__ == "__main__":
+    main()
